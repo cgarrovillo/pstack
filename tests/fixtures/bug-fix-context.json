@@ -1,0 +1,17 @@
+{
+  "version": "1",
+  "objective": "Correct a form that accepts an empty required value after returning from a validation error.",
+  "non_goals": ["Redesign the form", "Change unrelated validation rules"],
+  "constraints": ["Verify through the form boundary", "Preserve existing valid submissions"],
+  "authority": ["Inspect the form behavior", "Propose a bounded correction"],
+  "evidence": [
+    {
+      "kind": "reproduction",
+      "reference": "scenario: submit empty, correct field, submit again",
+      "claim": "The second submission is accepted while the required value remains empty.",
+      "confidence": "high"
+    }
+  ],
+  "open_decisions": [],
+  "risk": ["A correction could reject previously valid submissions if the boundary is misunderstood."]
+}

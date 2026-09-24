@@ -1,0 +1,30 @@
+{
+  "version": "1",
+  "purpose": "Keep the portable core declarative and independent of any host.",
+  "allowed_file_types": [".json", ".md"],
+  "file_exceptions": ["LICENSE", "NOTICE", "UPSTREAM.md"],
+  "required_paths": [
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "UPSTREAM.md",
+    "principles/README.md",
+    "playbooks/selection.md",
+    "protocols/context.md",
+    "protocols/review.md",
+    "schemas/context-bundle.schema.json",
+    "schemas/work-result.schema.json"
+  ],
+  "forbidden_capabilities": [
+    "host-branding",
+    "host-task-api",
+    "implicit-session-state",
+    "provider-routing",
+    "package-bootstrap",
+    "credential-access",
+    "network-access",
+    "external-write",
+    "automation-pack"
+  ],
+  "provenance_exceptions": ["NOTICE", "UPSTREAM.md"]
+}

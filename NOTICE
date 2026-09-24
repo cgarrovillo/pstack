@@ -1,0 +1,6 @@
+This repository is a derivative, independently maintained portable rewrite of ideas in pstack from the upstream cursor/plugins repository.
+
+Upstream pstack copyright: Copyright (c) 2026 Lauren Tan.
+Upstream pstack declares the MIT License; its exact source revision and update policy are recorded in UPSTREAM.md.
+
+No upstream plugin metadata, host-agent definitions, automation pack, bundled runtime code, or platform integration is included here.

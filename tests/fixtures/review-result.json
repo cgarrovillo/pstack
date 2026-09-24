@@ -1,0 +1,14 @@
+{
+  "version": "1",
+  "status": "complete",
+  "summary": "The proposed change keeps validation at the public boundary and restores the required-value check.",
+  "evidence": [
+    {
+      "claim": "The empty-value reproduction now rejects the submission and a valid submission still succeeds.",
+      "reference": "scenario results: empty-value=reject, valid-value=accept"
+    }
+  ],
+  "decisions": ["Keep the correction local to the validation boundary."],
+  "risks": ["The scenario does not cover every input combination."],
+  "next_steps": ["Review the result with the review protocol before release."]
+}

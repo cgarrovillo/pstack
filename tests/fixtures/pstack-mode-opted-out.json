@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "mode": "pstack",
+  "status": "inactive",
+  "persistence_scope": "conversation",
+  "activated_by": "user",
+  "opted_out": true,
+  "last_turn": {
+    "classification": "no-match",
+    "rigor_required": false,
+    "action": "deactivate",
+    "routing_roles": []
+  },
+  "routing_decision_refs": []
+}

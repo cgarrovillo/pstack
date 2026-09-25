@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pstack:schema:mode-state:v1",
+  "title": "PStack Mode State",
+  "type": "object",
+  "required": [
+    "version",
+    "mode",
+    "status",
+    "persistence_scope",
+    "activated_by",
+    "opted_out",
+    "last_turn",
+    "routing_decision_refs"
+  ],
+  "properties": {
+    "version": { "const": "1" },
+    "mode": { "const": "pstack" },
+    "status": { "enum": ["active", "inactive"] },
+    "persistence_scope": {
+      "enum": ["conversation", "workspace", "session", "adapter-defined"]
+    },
+    "activated_by": { "enum": ["user", "workspace-policy", "adapter-default"] },
+    "opted_out": { "type": "boolean" },
+    "last_turn": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": [
+            "classification",
+            "rigor_required",
+            "action",
+            "routing_roles"
+          ],
+          "properties": {
+            "classification": {
+              "enum": ["casual", "playbook", "rigor", "no-match"]
+            },
+            "rigor_required": { "type": "boolean" },
+            "selected_playbook": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._-]*$"
+            },
+            "action": {
+              "enum": ["pass-through", "dispatch", "none", "deactivate"]
+            },
+            "routing_roles": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._-]*$"
+              },
+              "uniqueItems": true
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": { "classification": { "const": "playbook" } },
+                "required": ["classification"]
+              },
+              "then": { "required": ["selected_playbook"] }
+            }
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "routing_decision_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9._-]*$"
+      },
+      "uniqueItems": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "opted_out": { "const": true } },
+        "required": ["opted_out"]
+      },
+      "then": {
+        "properties": { "status": { "const": "inactive" } }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

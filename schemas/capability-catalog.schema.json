@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pstack:schema:capability-catalog:v1",
+  "title": "PStack Capability Catalog",
+  "type": "object",
+  "required": ["version", "candidates"],
+  "properties": {
+    "version": { "const": "1" },
+    "parent_candidate_id": { "$ref": "#/$defs/identifier" },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "capabilities",
+          "reasoning_tiers",
+          "independence_group",
+          "available"
+        ],
+        "properties": {
+          "id": { "$ref": "#/$defs/identifier" },
+          "capabilities": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/identifier" },
+            "uniqueItems": true
+          },
+          "reasoning_tiers": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/reasoningTier" },
+            "uniqueItems": true
+          },
+          "independence_group": { "$ref": "#/$defs/identifier" },
+          "available": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "reasoningTier": {
+      "enum": ["maximum", "very-high", "high", "medium", "low"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+{
+  "version": "1",
+  "budget": "medium",
+  "roles": {
+    "architect-runner": {
+      "selection": "pinned",
+      "candidate_ids": [
+        "candidate-code",
+        "candidate-judgment",
+        "candidate-balanced"
+      ]
+    },
+    "feature": {
+      "selection": "inherit-parent"
+    },
+    "swarm-worker": {
+      "selection": "automatic",
+      "seat_count": 4
+    }
+  }
+}

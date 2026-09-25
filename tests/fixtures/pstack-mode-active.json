@@ -1,0 +1,16 @@
+{
+  "version": "1",
+  "mode": "pstack",
+  "status": "active",
+  "persistence_scope": "conversation",
+  "activated_by": "user",
+  "opted_out": false,
+  "last_turn": {
+    "classification": "playbook",
+    "rigor_required": true,
+    "selected_playbook": "feature",
+    "action": "dispatch",
+    "routing_roles": ["feature"]
+  },
+  "routing_decision_refs": ["routing-decision-feature"]
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pstack:schema:routing-decision:v1",
+  "title": "PStack Routing Decision",
+  "type": "object",
+  "required": [
+    "version",
+    "request_id",
+    "role",
+    "status",
+    "requested",
+    "realized",
+    "fallbacks"
+  ],
+  "properties": {
+    "version": { "const": "1" },
+    "request_id": { "$ref": "#/$defs/identifier" },
+    "role": { "$ref": "#/$defs/identifier" },
+    "status": { "enum": ["selected", "needs-choice", "unavailable"] },
+    "requested": {
+      "type": "object",
+      "required": [
+        "budget",
+        "reasoning_tier",
+        "capabilities",
+        "seat_count",
+        "diversity"
+      ],
+      "properties": {
+        "budget": { "enum": ["unlimited", "large", "medium", "small"] },
+        "reasoning_tier": { "$ref": "#/$defs/reasoningTier" },
+        "capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/identifier" },
+          "uniqueItems": true
+        },
+        "seat_count": { "type": "integer", "minimum": 1 },
+        "diversity": {
+          "enum": [
+            "none",
+            "prefer-distinct",
+            "require-distinct",
+            "prefer-different-from-parent"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "realized": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "seat",
+          "candidate_id",
+          "reasoning_tier",
+          "independence_group",
+          "selection_source"
+        ],
+        "properties": {
+          "seat": { "type": "integer", "minimum": 1 },
+          "candidate_id": { "$ref": "#/$defs/identifier" },
+          "reasoning_tier": { "$ref": "#/$defs/reasoningTier" },
+          "independence_group": { "$ref": "#/$defs/identifier" },
+          "selection_source": {
+            "enum": ["catalog", "configured", "parent", "automatic"]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "fallbacks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["seat", "from", "to", "reason", "constraints_preserved"],
+        "properties": {
+          "seat": { "type": "integer", "minimum": 1 },
+          "from": { "type": "string", "minLength": 1 },
+          "to": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 },
+          "constraints_preserved": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "reasoningTier": {
+      "enum": ["maximum", "very-high", "high", "medium", "low"]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "selected" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": { "realized": { "minItems": 1 } }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

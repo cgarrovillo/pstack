@@ -1,0 +1,31 @@
+{
+  "version": "1",
+  "request_id": "feature-route-fallback-1",
+  "role": "feature",
+  "status": "selected",
+  "requested": {
+    "budget": "unlimited",
+    "reasoning_tier": "maximum",
+    "capabilities": ["code-implementation"],
+    "seat_count": 1,
+    "diversity": "none"
+  },
+  "realized": [
+    {
+      "seat": 1,
+      "candidate_id": "candidate-code",
+      "reasoning_tier": "very-high",
+      "independence_group": "group-a",
+      "selection_source": "catalog"
+    }
+  ],
+  "fallbacks": [
+    {
+      "seat": 1,
+      "from": "candidate-retired@maximum",
+      "to": "candidate-code@very-high",
+      "reason": "The configured candidate was unavailable and no matching candidate supported the requested tier.",
+      "constraints_preserved": true
+    }
+  ]
+}

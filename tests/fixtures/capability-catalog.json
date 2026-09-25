@@ -1,0 +1,71 @@
+{
+  "version": "1",
+  "parent_candidate_id": "candidate-balanced",
+  "candidates": [
+    {
+      "id": "candidate-code",
+      "capabilities": [
+        "architecture",
+        "behavior-preservation",
+        "bounded-task-execution",
+        "candidate-generation",
+        "code-exploration",
+        "code-implementation",
+        "code-investigation",
+        "evidence-investigation",
+        "measurement-reasoning",
+        "optimization",
+        "performance-analysis",
+        "runtime-reasoning",
+        "speed"
+      ],
+      "reasoning_tiers": ["very-high", "high", "medium"],
+      "independence_group": "group-a",
+      "available": true
+    },
+    {
+      "id": "candidate-judgment",
+      "capabilities": [
+        "adversarial-review",
+        "architecture",
+        "candidate-generation",
+        "comparative-judgment",
+        "complex-reasoning",
+        "divergent-reasoning",
+        "evidence-synthesis",
+        "independent-review",
+        "instruction-following",
+        "judgment",
+        "reflection",
+        "technical-synthesis",
+        "technical-writing"
+      ],
+      "reasoning_tiers": ["maximum", "very-high", "high"],
+      "independence_group": "group-b",
+      "available": true
+    },
+    {
+      "id": "candidate-balanced",
+      "capabilities": [
+        "adversarial-review",
+        "architecture",
+        "candidate-generation",
+        "code-exploration",
+        "code-implementation",
+        "comparative-judgment",
+        "complex-reasoning",
+        "evidence-investigation",
+        "evidence-synthesis",
+        "independent-review",
+        "judgment",
+        "technical-synthesis",
+        "technical-writing",
+        "tool-use",
+        "tooling-analysis"
+      ],
+      "reasoning_tiers": ["maximum", "very-high", "high", "medium"],
+      "independence_group": "group-c",
+      "available": true
+    }
+  ]
+}

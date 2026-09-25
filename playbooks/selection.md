@@ -2,6 +2,8 @@
 
 Choose one primary task shape. A secondary playbook may supply a clearly named sub-step, but it must not silently change the objective or authority.
 
+When [PStack Mode](../protocols/pstack-mode.md) is active, it performs this selection on every non-casual turn and keeps the chosen playbook as the primary task contract. Supporting routing roles add implementation, investigation, comparison, or criticism; they do not replace the primary playbook.
+
 | If the objective is to… | Use | Primary proof |
 | --- | --- | --- |
 | Correct a known wrong behavior | [bug-fix](bug-fix.md) | The original reproduction passes on the same surface. |

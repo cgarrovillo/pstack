@@ -1,0 +1,45 @@
+{
+  "version": "1",
+  "request_id": "architecture-panel-1",
+  "role": "architect-runner",
+  "status": "selected",
+  "requested": {
+    "budget": "unlimited",
+    "reasoning_tier": "maximum",
+    "capabilities": ["architecture", "candidate-generation"],
+    "seat_count": 3,
+    "diversity": "prefer-distinct"
+  },
+  "realized": [
+    {
+      "seat": 1,
+      "candidate_id": "candidate-code",
+      "reasoning_tier": "very-high",
+      "independence_group": "group-a",
+      "selection_source": "configured"
+    },
+    {
+      "seat": 2,
+      "candidate_id": "candidate-judgment",
+      "reasoning_tier": "maximum",
+      "independence_group": "group-b",
+      "selection_source": "configured"
+    },
+    {
+      "seat": 3,
+      "candidate_id": "candidate-balanced",
+      "reasoning_tier": "maximum",
+      "independence_group": "group-c",
+      "selection_source": "configured"
+    }
+  ],
+  "fallbacks": [
+    {
+      "seat": 1,
+      "from": "candidate-code@maximum",
+      "to": "candidate-code@very-high",
+      "reason": "The pinned candidate does not expose the requested tier.",
+      "constraints_preserved": true
+    }
+  ]
+}

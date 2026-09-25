@@ -11,11 +11,11 @@
 
 ## What was retained
 
-The portable core rewrites general engineering principles and task-shaping ideas. It retains the upstream MIT license and attribution.
+The portable core rewrites general engineering principles, task-shaping ideas, the role-based model-routing policy, relative reasoning budgets, panel and fallback semantics, and the sticky playbook-dispatch mode. It retains the upstream MIT license and attribution.
 
 ## What was excluded
 
-The extraction intentionally excludes all plugin packaging, host metadata, agent definitions, automation, bundled runtime code, configuration, interactive commands, external integration behavior, and platform-specific documentation.
+The extraction intentionally excludes plugin packaging, host metadata, concrete model slugs, host task-call parameters, hidden configuration paths, host-managed mode flags, automation, bundled runtime code, interactive host commands, external integration behavior, and platform-specific documentation. Portable routing policy and explicit mode state are retained without those mechanisms.
 
 ## Update policy
 

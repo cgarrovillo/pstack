@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pstack:schema:routing-policy:v1",
+  "title": "PStack Routing Policy",
+  "type": "object",
+  "required": ["version", "budget", "budget_targets", "roles"],
+  "properties": {
+    "version": { "const": "1" },
+    "budget": { "enum": ["unlimited", "large", "medium", "small"] },
+    "budget_targets": {
+      "type": "object",
+      "required": ["unlimited", "large", "medium", "small"],
+      "properties": {
+        "unlimited": { "type": "null" },
+        "large": { "const": "very-high" },
+        "medium": { "const": "high" },
+        "small": { "const": "medium" }
+      },
+      "additionalProperties": false
+    },
+    "roles": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/identifier" },
+      "additionalProperties": { "$ref": "#/$defs/role" }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "reasoningTier": {
+      "enum": ["maximum", "very-high", "high", "medium", "low"]
+    },
+    "role": {
+      "type": "object",
+      "required": [
+        "upstream_roles",
+        "mode",
+        "default_seats",
+        "required_capabilities",
+        "preferred_capabilities",
+        "default_reasoning_tier",
+        "diversity",
+        "fallback"
+      ],
+      "properties": {
+        "upstream_roles": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "mode": {
+          "enum": ["single", "panel", "pool", "caller-fanout"]
+        },
+        "default_seats": { "type": "integer", "minimum": 1 },
+        "required_capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/identifier" },
+          "uniqueItems": true
+        },
+        "preferred_capabilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/identifier" },
+          "uniqueItems": true
+        },
+        "default_reasoning_tier": { "$ref": "#/$defs/reasoningTier" },
+        "diversity": {
+          "enum": [
+            "none",
+            "prefer-distinct",
+            "require-distinct",
+            "prefer-different-from-parent"
+          ]
+        },
+        "fallback": {
+          "type": "object",
+          "required": [
+            "allow_automatic",
+            "allow_parent",
+            "minimum_reasoning_tier",
+            "report_substitution"
+          ],
+          "properties": {
+            "allow_automatic": { "type": "boolean" },
+            "allow_parent": { "type": "boolean" },
+            "minimum_reasoning_tier": { "$ref": "#/$defs/reasoningTier" },
+            "report_substitution": { "const": true }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

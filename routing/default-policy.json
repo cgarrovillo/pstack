@@ -1,0 +1,312 @@
+{
+  "version": "1",
+  "budget": "unlimited",
+  "budget_targets": {
+    "unlimited": null,
+    "large": "very-high",
+    "medium": "high",
+    "small": "medium"
+  },
+  "roles": {
+    "feature": {
+      "upstream_roles": ["feature", "refactoring"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["code-implementation"],
+      "preferred_capabilities": ["speed"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "refactoring": {
+      "upstream_roles": ["feature", "refactoring"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["code-implementation", "behavior-preservation"],
+      "preferred_capabilities": ["speed"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "bug-fix": {
+      "upstream_roles": ["bug-fix"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["code-investigation", "code-implementation"],
+      "preferred_capabilities": ["runtime-reasoning"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "perf-issue": {
+      "upstream_roles": ["perf-issue"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["performance-analysis", "code-implementation"],
+      "preferred_capabilities": ["measurement-reasoning"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "hillclimb": {
+      "upstream_roles": ["hillclimb"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["optimization", "code-implementation"],
+      "preferred_capabilities": ["measurement-reasoning"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "judgment-and-prose": {
+      "upstream_roles": ["judgment and prose"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["judgment", "technical-writing"],
+      "preferred_capabilities": ["instruction-following"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "hardest-tasks": {
+      "upstream_roles": ["hardest tasks"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["complex-reasoning", "architecture"],
+      "preferred_capabilities": ["instruction-following"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "how-explorer": {
+      "upstream_roles": ["how explorer"],
+      "mode": "caller-fanout",
+      "default_seats": 1,
+      "required_capabilities": ["code-exploration"],
+      "preferred_capabilities": ["speed"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "how-explainer": {
+      "upstream_roles": ["how explainer"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["technical-synthesis"],
+      "preferred_capabilities": ["technical-writing"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "why-investigator": {
+      "upstream_roles": ["why investigators"],
+      "mode": "caller-fanout",
+      "default_seats": 1,
+      "required_capabilities": ["evidence-investigation"],
+      "preferred_capabilities": ["tool-use"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "why-synthesizer": {
+      "upstream_roles": ["why synthesizer"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["evidence-synthesis"],
+      "preferred_capabilities": ["technical-writing"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "reflect-tooling": {
+      "upstream_roles": ["reflect tooling"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["tooling-analysis"],
+      "preferred_capabilities": ["code-exploration"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "reflect-judgment": {
+      "upstream_roles": ["reflect judgment, divergent, synthesizer"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["judgment"],
+      "preferred_capabilities": ["reflection"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "reflect-divergent": {
+      "upstream_roles": ["reflect judgment, divergent, synthesizer"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["divergent-reasoning"],
+      "preferred_capabilities": ["reflection"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "reflect-synthesizer": {
+      "upstream_roles": ["reflect judgment, divergent, synthesizer"],
+      "mode": "single",
+      "default_seats": 1,
+      "required_capabilities": ["judgment", "technical-synthesis"],
+      "preferred_capabilities": ["reflection"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "arena-runner": {
+      "upstream_roles": ["arena runners"],
+      "mode": "panel",
+      "default_seats": 3,
+      "required_capabilities": ["candidate-generation"],
+      "preferred_capabilities": ["architecture", "code-implementation"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "prefer-distinct",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "arena-cross-judge": {
+      "upstream_roles": ["arena cross-judge pool"],
+      "mode": "pool",
+      "default_seats": 1,
+      "required_capabilities": ["comparative-judgment"],
+      "preferred_capabilities": ["independent-review"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "prefer-different-from-parent",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "swarm-worker": {
+      "upstream_roles": ["swarm workers"],
+      "mode": "caller-fanout",
+      "default_seats": 1,
+      "required_capabilities": ["bounded-task-execution"],
+      "preferred_capabilities": ["code-implementation", "speed"],
+      "default_reasoning_tier": "very-high",
+      "diversity": "none",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "medium",
+        "report_substitution": true
+      }
+    },
+    "architect-runner": {
+      "upstream_roles": ["architect runners"],
+      "mode": "panel",
+      "default_seats": 3,
+      "required_capabilities": ["architecture", "candidate-generation"],
+      "preferred_capabilities": ["complex-reasoning"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "prefer-distinct",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    },
+    "interrogate-reviewer": {
+      "upstream_roles": ["interrogate reviewers"],
+      "mode": "panel",
+      "default_seats": 3,
+      "required_capabilities": ["adversarial-review"],
+      "preferred_capabilities": ["independent-review", "judgment"],
+      "default_reasoning_tier": "maximum",
+      "diversity": "prefer-distinct",
+      "fallback": {
+        "allow_automatic": true,
+        "allow_parent": true,
+        "minimum_reasoning_tier": "high",
+        "report_substitution": true
+      }
+    }
+  }
+}

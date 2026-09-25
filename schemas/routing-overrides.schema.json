@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:pstack:schema:routing-overrides:v1",
+  "title": "PStack Routing Overrides",
+  "type": "object",
+  "required": ["version", "roles"],
+  "properties": {
+    "version": { "const": "1" },
+    "budget": { "enum": ["unlimited", "large", "medium", "small"] },
+    "roles": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/identifier" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["selection"],
+        "properties": {
+          "selection": {
+            "enum": [
+              "capability-match",
+              "inherit-parent",
+              "automatic",
+              "pinned"
+            ]
+          },
+          "candidate_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/identifier" },
+            "uniqueItems": true
+          },
+          "reasoning_tier": { "$ref": "#/$defs/reasoningTier" },
+          "seat_count": { "type": "integer", "minimum": 1 }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": { "selection": { "const": "pinned" } },
+              "required": ["selection"]
+            },
+            "then": { "required": ["candidate_ids"] }
+          }
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "reasoningTier": {
+      "enum": ["maximum", "very-high", "high", "medium", "low"]
+    }
+  },
+  "additionalProperties": false
+}
